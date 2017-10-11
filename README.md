@@ -1,24 +1,28 @@
-# README
+# Doctor API
+Small Rails API to serve up to a React Front End
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Front End
+https://github.com/abrahamkinney/doctor-frontend
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+### Clone the Repository
+```console
+git clone https://github.com/abrahamkinney/doctor-api
+```
 
-* System dependencies
+### Bundle
+```console
+bundle
+```
 
-* Configuration
+### Set up DB
+```console
+rake db:migrate
+rake db:seed
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Run Rails
+```console
+rails s
+```
