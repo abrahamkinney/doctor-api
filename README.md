@@ -6,6 +6,9 @@ https://github.com/abrahamkinney/doctor-frontend
 
 ## Getting Started
 
+### -- Make sure you have Ruby, Rails and Bundler installed --
+
+
 ### Clone the Repository
 ```console
 git clone https://github.com/abrahamkinney/doctor-api
@@ -22,7 +25,7 @@ rake db:migrate
 rake db:seed
 ```
 
-### Run Rails
+### Run Rails on Port 3001
 ```console
-rails s
+  rails s -p 3001
 ```
