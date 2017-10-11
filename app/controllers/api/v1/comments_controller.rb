@@ -17,6 +17,22 @@ module Api::V1
       render json: @comment
     end
 
+    #
+    # def disable
+    #   @comment = Comment.find(params[:id])
+    #   @comment.update_attributes(comment_params)
+    #   render json: @comment
+    # end
+
+    def destroy
+      @comment = Comment.find(params[:id])
+      if @comment.destroy
+        head :no_content, status: :ok
+      else
+        render json: @comment.errors, status: :unprocessable_entity
+      end
+    end
+
     private
 
       def comment_params
