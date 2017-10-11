@@ -1,4 +1,4 @@
-ideas = Comment.create(
+comments = Comment.create(
   [
     {
       rating: 5,
