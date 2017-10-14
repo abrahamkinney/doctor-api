@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171011173729) do
+ActiveRecord::Schema.define(version: 20171014161813) do
 
   create_table "comments", force: :cascade do |t|
     t.string "comment_body"
@@ -20,6 +20,25 @@ ActiveRecord::Schema.define(version: 20171011173729) do
     t.integer "doctor_id"
     t.datetime "updated_at", null: false
     t.boolean "disabled"
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.string "name"
+    t.text "address"
+    t.float "lat"
+    t.float "lng"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "doctors_specialties", id: false, force: :cascade do |t|
+    t.integer "doctor_id", null: false
+    t.integer "specialty_id", null: false
+  end
+
+  create_table "specialties", force: :cascade do |t|
+    t.string "name"
   end
 
 end
