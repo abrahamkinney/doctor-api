@@ -18,11 +18,20 @@ module Api::V1
     end
 
     #
+    # comment = Comment.new(comment_params)
+    #  if comment.save
+    #     render json: comment
+    #  else
+    #     render whatever
+    #  end
+    #
     # def disable
     #   @comment = Comment.find(params[:id])
     #   @comment.update_attributes(comment_params)
     #   render json: @comment
     # end
+
+
 
     def destroy
       @comment = Comment.find(params[:id])
