@@ -4,4 +4,5 @@ class CreateDoctorsSpecialties < ActiveRecord::Migration[5.1]
       t.integer :doctor_id
       t.integer :specialty_id
     end
+  end
 end

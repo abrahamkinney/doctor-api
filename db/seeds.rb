@@ -150,18 +150,23 @@ doctors = Doctor.create(
     ])
 
 
-    DoctorSpecialty.create(doctor_id: 1, specialty_id:1)
+    DoctorsSpecialty.create(doctor_id: 1, specialty_id:1)
+    DoctorsSpecialty.create(doctor_id: 2, specialty_id:1)
+    DoctorsSpecialty.create(doctor_id: 3, specialty_id:1)
+    DoctorsSpecialty.create(doctor_id: 4, specialty_id:1)
+    DoctorsSpecialty.create(doctor_id: 5, specialty_id:1)
+    DoctorsSpecialty.create(doctor_id: 6, specialty_id:1)
+    DoctorsSpecialty.create(doctor_id: 7, specialty_id:1)
+    DoctorsSpecialty.create(doctor_id: 8, specialty_id:8)
+    DoctorsSpecialty.create(doctor_id: 9, specialty_id:9)
+    DoctorsSpecialty.create(doctor_id: 10, specialty_id:10)
+    DoctorsSpecialty.create(doctor_id: 11, specialty_id:10)
+    DoctorsSpecialty.create(doctor_id: 12, specialty_id:7)
+    DoctorsSpecialty.create(doctor_id: 13, specialty_id:8)
+    DoctorsSpecialty.create(doctor_id: 14, specialty_id:9)
+    DoctorsSpecialty.create(doctor_id: 15, specialty_id:5)
+    DoctorsSpecialty.create(doctor_id: 16, specialty_id:6)
 
-
-# Doctor.each do |c|
-#   Comment.create(
-#     rating: (rand*5),
-#     comment_body: "Comment",
-#     doctor_id: (rand*16),
-#     author_id: (rand*50),
-#     created_at: (rand*10).days.ago
-#   )
-# end
 
 60.times do
   Comment.create!(
@@ -172,37 +177,3 @@ doctors = Doctor.create(
     created_at: (rand*10).days.ago
   )
 end
-
-
-#
-# comments = Comment.create(
-#   [
-#     {
-#       rating: 5,
-#       comment_body: "Liked him",
-#       doctor_id: 1,
-#       author_id: 1,
-#       created_at: (rand*10).days.ago
-#     },
-#     {
-#       rating: 1,
-#       comment_body: "Didn't like him",
-#       doctor_id: 2,
-#       author_id: 3,
-#       created_at: (rand*10).days.ago
-#     },
-#     {
-#       rating: 3,
-#       comment_body: "Took care of me",
-#       doctor_id: 3,
-#       author_id: 1,
-#       created_at: (rand*10).days.ago
-#     },
-#     {
-#       rating: 4,
-#       comment_body: "Yay",
-#       doctor_id: 4,
-#       author_id: 1,
-#       created_at: (rand*10).days.ago
-#     }
-#   ])
