@@ -1,14 +1,13 @@
 doctors = Doctor.create(
   [
     {
-      doctor_id: 1,
       name: "Bob",
       address: 5,
       created_at: (rand*20).days.ago,
       lat: 34.176538,
       lng: -118.355979
     },
-      doctor_id: 2,
+    {
       name: "Bob",
       address: 5,
       created_at: (rand*20).days.ago,
@@ -16,7 +15,6 @@ doctors = Doctor.create(
       lng: -118.341288
     },
     {
-      doctor_id: 3,
       name: "Ted",
       address: 4,
       created_at: (rand*20).days.ago,
@@ -24,7 +22,6 @@ doctors = Doctor.create(
       lng: -118.348842
     },
     {
-      doctor_id: 4,
       name: "John",
       address: 4,
       created_at: (rand*20).days.ago,
@@ -32,7 +29,6 @@ doctors = Doctor.create(
       lng: -118.35485
     },
     {
-      doctor_id: 5,
       name: "Bubba",
       address: 5,
       created_at: (rand*20).days.ago,
@@ -40,7 +36,6 @@ doctors = Doctor.create(
       lng: -118.338588
     },
     {
-      doctor_id: 6,
       name: "Bob",
       address: 5,
       created_at: (rand*20).days.ago,
@@ -48,7 +43,6 @@ doctors = Doctor.create(
       lng: -118.35267
     },
     {
-      doctor_id: 7,
       name: "Ted",
       address: 1,
       created_at: (rand*20).days.ago,
@@ -56,7 +50,6 @@ doctors = Doctor.create(
       lng: -118.323329
     },
     {
-      doctor_id: 8,
       name: "John",
       address: 3,
       created_at: (rand*20).days.ago,
@@ -64,7 +57,6 @@ doctors = Doctor.create(
       lng: -118.353138
     },
     {
-      doctor_id: 9,
       name: "Bubba",
       address: 4,
       created_at: (rand*20).days.ago,
@@ -72,7 +64,6 @@ doctors = Doctor.create(
       lng: -118.349276
     },
     {
-      doctor_id: 10,
       name: "Bob",
       address: 5,
       created_at: (rand*20).days.ago,
@@ -80,7 +71,6 @@ doctors = Doctor.create(
       lng: -118.360326
     },
     {
-      doctor_id: 11,
       name: "Ted",
       address: 1,
       created_at: (rand*20).days.ago,
@@ -88,7 +78,6 @@ doctors = Doctor.create(
       lng: -118.364489
     },
     {
-      doctor_id: 12,
       name: "John",
       address: 3,
       created_at: (rand*20).days.ago,
@@ -96,7 +85,6 @@ doctors = Doctor.create(
       lng: -118.291855
     },
     {
-      doctor_id: 13,
       name: "Bubba",
       address: 4,
       created_at: (rand*20).days.ago,
@@ -104,7 +92,6 @@ doctors = Doctor.create(
       lng: -118.245850
     },
     {
-      doctor_id: 14,
       name: "Bob",
       address: 5,
       created_at: (rand*20).days.ago,
@@ -112,7 +99,6 @@ doctors = Doctor.create(
       lng: -118.185425
     },
     {
-      doctor_id: 15,
       name: "Ted",
       address: 1,
       created_at: (rand*20).days.ago,
@@ -120,7 +106,6 @@ doctors = Doctor.create(
       lng: -118.160105
     },
     {
-      doctor_id: 16,
       name: "John",
       address: 3,
       created_at: (rand*20).days.ago,
@@ -130,7 +115,7 @@ doctors = Doctor.create(
   ])
 
 
-  comments = Specialty.create(
+  specialties = Specialty.create(
     [
       {
         name: "Dermatology",
@@ -165,34 +150,59 @@ doctors = Doctor.create(
     ])
 
 
-comments = Comment.create(
-  [
-    {
-      rating: 5,
-      comment_body: "Liked him",
-      doctor_id: 1,
-      author_id: 1,
-      created_at: (rand*10).days.ago
-    },
-    {
-      rating: 1,
-      comment_body: "Didn't like him",
-      doctor_id: 2,
-      author_id: 3,
-      created_at: (rand*10).days.ago
-    },
-    {
-      rating: 3,
-      comment_body: "Took care of me",
-      doctor_id: 3,
-      author_id: 1,
-      created_at: (rand*10).days.ago
-    },
-    {
-      rating: 4,
-      comment_body: "Yay",
-      doctor_id: 4,
-      author_id: 1,
-      created_at: (rand*10).days.ago
-    }
-  ])
+    DoctorSpecialty.create(doctor_id: 1, specialty_id:1)
+
+
+# Doctor.each do |c|
+#   Comment.create(
+#     rating: (rand*5),
+#     comment_body: "Comment",
+#     doctor_id: (rand*16),
+#     author_id: (rand*50),
+#     created_at: (rand*10).days.ago
+#   )
+# end
+
+60.times do
+  Comment.create!(
+    rating: (rand*5),
+    comment_body: "Comment",
+    doctor_id: (rand*16),
+    author_id: (rand*50),
+    created_at: (rand*10).days.ago
+  )
+end
+
+
+#
+# comments = Comment.create(
+#   [
+#     {
+#       rating: 5,
+#       comment_body: "Liked him",
+#       doctor_id: 1,
+#       author_id: 1,
+#       created_at: (rand*10).days.ago
+#     },
+#     {
+#       rating: 1,
+#       comment_body: "Didn't like him",
+#       doctor_id: 2,
+#       author_id: 3,
+#       created_at: (rand*10).days.ago
+#     },
+#     {
+#       rating: 3,
+#       comment_body: "Took care of me",
+#       doctor_id: 3,
+#       author_id: 1,
+#       created_at: (rand*10).days.ago
+#     },
+#     {
+#       rating: 4,
+#       comment_body: "Yay",
+#       doctor_id: 4,
+#       author_id: 1,
+#       created_at: (rand*10).days.ago
+#     }
+#   ])
