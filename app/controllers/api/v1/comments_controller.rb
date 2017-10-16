@@ -70,7 +70,6 @@ module Api::V1
         HAVING score >= rating
       "
       rated_matches = Doctor.find_by_sql(query)
-
     end
 
     def destroy
