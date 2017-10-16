@@ -22,9 +22,22 @@ module Api::V1
       render json: @comment
     end
 
-
     def suggest_doctors(doctor, rating)
-      Doctor.within(5, :origin => [doctor.lng, doctor.lat]).count #withing 5
+      specialty__distance_matches = doctor.specialties.first.doctors.within(5, :origin => [doctor.lat, doctor.lng])
+
+      query = "
+        SELECT
+           doctors.*,
+           AVG(comments.rating) AS score
+        FROM
+          comments
+        INNER JOIN doctors
+          on comments.doctor_id = doctors.id
+        GROUP BY comments.doctor_id
+        HAVING score >= #{rating.to_f}
+      "
+      rated_matches = Doctor.find_by_sql(query)
+
       # same specialty_id
       # average rating that is equal to or higher than passed rating
 
@@ -34,7 +47,6 @@ module Api::V1
       ### WANT MAKE THE FUNCTION SMARTER SO IT WOULD RETURN SUGGESTIONS BASED ON OTHER THINGS
       ## RATHER THAN SIMPLY BEING TIED TO A COMMENT CREATION
 
-      return suggested_doctors
     end
 
     # def disable
