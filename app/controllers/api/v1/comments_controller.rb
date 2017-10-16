@@ -22,38 +22,56 @@ module Api::V1
       render json: @comment
     end
 
+    ############### NOTES FOR AUSTIN ########################
+    ## The suggest_doctors function is only here for the sake of brevity so you only have to look at this code
+    ## This belongs in the model or a helper. Also, I would think in well designed app it would be
+    ## a good idea to decouple the filtering logic into reusable independant functions that also
+    ## don't rely and are built to service just this create function. Making it more of a modular
+    ## little service.
+    ##
+    ## Also this. would need to
+    ##
+    ## I used the geokit-rails gem for location (the config is in the doctors model).
+    ## I am finding suggested doctors based on 3 criteria:
+    ##  1) within a 5 mile radius of the currently commented doctor
+    ##  2) has the same specialty (docs only have one in this set up - not sure if they would have multiple?)
+    ##  1) has a rating equal to or greater than the current rating given to currrent doc
+
     def suggest_doctors(doctor, rating)
+      doctor = ActiveRecord::Base::sanitize(params[:doctor])
+      rating = ActiveRecord::Base::sanitize(rating)
+
       specialty__distance_matches = doctor.specialties.first.doctors.within(5, :origin => [doctor.lat, doctor.lng])
 
       query = "
         SELECT
-           doctors.*,
+           doctors.id,
+           doctors.name,
+           doctors.lat,
+           doctors.lng,
+           doctors.address,
+           doctors.group_id,
+           doctors.created_at,
+           doctors.updated_at,
            AVG(comments.rating) AS score
         FROM
           comments
         INNER JOIN doctors
           on comments.doctor_id = doctors.id
-        GROUP BY comments.doctor_id
-        HAVING score >= #{rating.to_f}
+        GROUP BY doctors.id,
+          doctors.name,
+          doctors.lat,
+          doctors.lng,
+          doctors.address,
+          doctors.group_id,
+          doctors.created_at,
+          doctors.updated_at,
+          comments.doctor_id
+        HAVING score >= rating
       "
       rated_matches = Doctor.find_by_sql(query)
 
-      # same specialty_id
-      # average rating that is equal to or higher than passed rating
-
-      ### IN THIS VERSION THE RATING IS PASSED BUT ONCE A AUTHENTICATED USER IS AVAILABLE
-      ### WE WOULD WANT TO DECOUPLE THIS TO LOOK UP WHAT THE CURRENT USER RATED THE DOC AT
-      ### THIS WAY WE COULD USE THIS FUNCTION IN OTHER AREAS AND LOOK IT UP. WE WOULD
-      ### WANT MAKE THE FUNCTION SMARTER SO IT WOULD RETURN SUGGESTIONS BASED ON OTHER THINGS
-      ## RATHER THAN SIMPLY BEING TIED TO A COMMENT CREATION
-
     end
-
-    # def disable
-    #   @comment = Comment.find(params[:id])
-    #   @comment.update_attributes(comment_params)
-    #   render json: @comment
-    # end
 
     def destroy
       @comment = Comment.find(params[:id])
