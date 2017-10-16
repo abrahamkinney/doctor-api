@@ -9,8 +9,8 @@ module Api::V1
     def create
       comment = Comment.create(comment_params)
        if comment.save
-          suggest_doctors(Doctor.find(comment.doctor_id), comment.rating)
-          render json: comment, suggest_doctors
+          doctor_list = suggest_doctors(Doctor.find(comment.doctor_id), comment.rating)
+          render json: comment, doctor_list
        else
           render json: @comment.errors, status: :unprocessable_entity
        end
